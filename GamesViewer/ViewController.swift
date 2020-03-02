@@ -16,5 +16,9 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func buttonClick(_ sender: UIButton) {
+        JuegosController.getGames(page: 1) { (listaJuegos) in
+            print(listaJuegos[0])
+        }
+    }
 }
-
