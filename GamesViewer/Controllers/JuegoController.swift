@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-struct JuegosController
+struct JuegoController
 {
     private static let alSession = Session(configuration: URLSessionConfiguration.default)
     private static let gameURL = "https://api.rawg.io/api/games"

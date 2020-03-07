@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JuegoModel : Codable
+class JuegoModel : Codable
 {
     var id: Int?
     var name: String?
