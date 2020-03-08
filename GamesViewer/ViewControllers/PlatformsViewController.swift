@@ -11,7 +11,6 @@ import UIKit
 class PlatformsViewController: UITableViewController
 {
     var plataformas: [PlataformaModel]?
-    var tablaCargando: Bool = false
     
     override func viewDidLoad()
     {
@@ -84,15 +83,3 @@ class PlataformaTableViewCell: UITableViewCell
 {
     var plataformaId: Int?
 }
-
-//            let rowsToLoadFromBottom = 5;
-//            let rowsLoaded = datosPlataforma.count
-//            if (!self.tablaCargando && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom)))
-//            {
-//               let totalRows = self.plataformasData?.count ?? 0
-//                let remainingSpeciesToLoad = totalRows - rowsLoaded;
-//                if (remainingSpeciesToLoad > 0)
-//                {
-//                    self.loadMorePlataformas()
-//                }
-//            }

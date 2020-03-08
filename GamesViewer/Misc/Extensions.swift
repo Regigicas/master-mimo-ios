@@ -27,3 +27,32 @@ extension UIImageView
         }
     }
 }
+
+extension UITableView
+{
+    var rowsCount: Int
+    {
+        let sections = self.numberOfSections
+        var rows = 0
+
+        for i in 0...sections - 1
+        {
+            rows += self.numberOfRows(inSection: i)
+        }
+
+        return rows
+    }
+    
+    func isAtEnd() -> Bool
+    {
+        let offset = self.contentOffset
+        let bounds = self.bounds
+        let size = self.contentSize
+        let inset = self.contentInset
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height
+        let reload_distance: CGFloat = 10.0
+        
+        return y > (h + reload_distance)
+    }
+}
