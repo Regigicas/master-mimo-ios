@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="JuegoFav" representedClassName="JuegoFav" syncable="YES" codeGenerationType="class">
+        <attribute name="backgroundImage" optional="YES" attributeType="String"/>
+        <attribute name="backgroundImageAdditional" optional="YES" attributeType="String"/>
+        <attribute name="descripcion" optional="YES" attributeType="String"/>
+        <attribute name="fechaSalida" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="juegoFPF" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JuegoFavPlataformaFav" inverseName="juegoId" inverseEntity="JuegoFavPlataformaFav"/>
+        <relationship name="juegoUJF" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UsuarioJuegoFav" inverseName="juegoId" inverseEntity="UsuarioJuegoFav"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="JuegoFavPlataformaFav" representedClassName="JuegoFavPlataformaFav" syncable="YES" codeGenerationType="class">
+        <relationship name="juegoId" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JuegoFav" inverseName="juegoFPF" inverseEntity="JuegoFav"/>
+        <relationship name="plataformaId" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlataformaFav" inverseName="platFPF" inverseEntity="PlataformaFav"/>
+    </entity>
+    <entity name="PlataformaFav" representedClassName="PlataformaFav" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String"/>
+        <relationship name="platFPF" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JuegoFavPlataformaFav" inverseName="plataformaId" inverseEntity="JuegoFavPlataformaFav"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Usuario" representedClassName="Usuario" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String" regularExpressionString="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,64}"/>
         <attribute name="preferencias" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sha_hash_pass" optional="YES" attributeType="String"/>
         <attribute name="usuario" optional="YES" attributeType="String" minValueString="3"/>
+        <relationship name="usuarioUJF" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UsuarioJuegoFav" inverseName="usuarioId" inverseEntity="UsuarioJuegoFav"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="usuario"/>
@@ -14,7 +45,15 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="UsuarioJuegoFav" representedClassName="UsuarioJuegoFav" syncable="YES" codeGenerationType="class">
+        <relationship name="juegoId" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JuegoFav" inverseName="juegoUJF" inverseEntity="JuegoFav"/>
+        <relationship name="usuarioId" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Usuario" inverseName="usuarioUJF" inverseEntity="Usuario"/>
+    </entity>
     <elements>
-        <element name="Usuario" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Usuario" positionX="-186.15234375" positionY="221.765625" width="128" height="118"/>
+        <element name="JuegoFav" positionX="-768.13671875" positionY="328.12890625" width="128" height="178"/>
+        <element name="PlataformaFav" positionX="-503.5703125" positionY="79.14453125" width="128" height="88"/>
+        <element name="JuegoFavPlataformaFav" positionX="-806.9765625" positionY="78.4375" width="128" height="73"/>
+        <element name="UsuarioJuegoFav" positionX="-464.3125" positionY="400.3203125" width="128" height="73"/>
     </elements>
 </model>

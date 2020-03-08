@@ -10,9 +10,12 @@ import UIKit
 
 class JuegoInfoViewController: UIViewController
 {
+    public var juego: JuegoModel?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        assert(self.juego != nil)
     }
     
     override func viewWillAppear(_ animated: Bool)

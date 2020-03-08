@@ -12,17 +12,16 @@ import Alamofire
 struct PlataformaController
 {
     private static let alSession = Session(configuration: URLSessionConfiguration.default)
-    private static let platURL = "https://api.rawg.io/api/platforms"
-    public static let cacheAll = CachedModel<[PlataformaModel]>(expirationTime: 300)
-    public static let cacheIds = CachedModel<PlataformaModel>(expirationTime: 300)
-    public static let CachePathAll: NSString = "cache_all"
-    public static let CachePathId: NSString = "cache_%u"
+    public static let platURL = "https://api.rawg.io/api/platforms"
+    private static let cache = CachedModel<Any>(expirationTime: 300)
+    public static let CachePathAll: NSString = "pt_cache_all"
+    public static let CachePathId: NSString = "pt_cache_%u"
     
     public static func getListadoPlataformas(callback: @escaping (_: [PlataformaModel]) -> Void)
     {
-        if let cachedResult = cacheAll.getValue(forKey: CachePathAll)
+        if let cachedResult = cache.getValue(forKey: CachePathAll)
         {
-            callback(cachedResult)
+            callback(cachedResult as! [PlataformaModel])
             return;
         }
         
@@ -31,7 +30,7 @@ struct PlataformaController
                 switch (response.result)
                 {
                     case let .success(plataformasData):
-                        cacheAll.setValue(forKey: CachePathAll, value: plataformasData.results)
+                        cache.setValue(forKey: CachePathAll, value: plataformasData.results)
                         callback(plataformasData.results)
                     case let.failure(error):
                         print(error)
@@ -42,9 +41,9 @@ struct PlataformaController
     public static func getPlataformaInfo(id: Int, callback: @escaping (_: PlataformaModel) -> Void)
     {
         let cachePath = String(format: CachePathId as String, id) as NSString
-        if let cachedResult = cacheIds.getValue(forKey: cachePath)
+        if let cachedResult = cache.getValue(forKey: cachePath)
         {
-            callback(cachedResult)
+            callback(cachedResult as! PlataformaModel)
             return;
         }
         
@@ -53,7 +52,7 @@ struct PlataformaController
                 switch (response.result)
                 {
                     case let .success(plataformaData):
-                        cacheIds.setValue(forKey: cachePath, value: plataformaData)
+                        cache.setValue(forKey: cachePath, value: plataformaData)
                         callback(plataformaData)
                     case let.failure(error):
                         print(error)

@@ -39,8 +39,8 @@ class PlatformsViewController: UITableViewController
         if let plataformasData = plataformas, plataformasData.count >= indexPath.row
         {
             let plataformaInfo = plataformasData[indexPath.row]
-            cell.labelPlataforma?.text = plataformaInfo.name
-            cell.imagePlataforma?.image = plataformaInfo.getImgFile(dark: self.traitCollection.userInterfaceStyle == .light)
+            cell.textLabel?.text = plataformaInfo.name
+            cell.imageView?.image = plataformaInfo.getImgFile(dark: self.traitCollection.userInterfaceStyle == .light)
             cell.plataformaId = plataformaInfo.id
         }
 
@@ -82,8 +82,6 @@ class PlatformsViewController: UITableViewController
 
 class PlataformaTableViewCell: UITableViewCell
 {
-    @IBOutlet weak var imagePlataforma: UIImageView!
-    @IBOutlet weak var labelPlataforma: UILabel!
     var plataformaId: Int?
 }
 

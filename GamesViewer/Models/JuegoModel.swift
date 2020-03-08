@@ -37,4 +37,24 @@ class JuegoModel : Codable
     {
         var results: [JuegoModel]
     }
+    
+    struct AllGamesResponse: Codable
+    {
+        var results: [JuegoModel]
+    }
+    
+    func getBackgroundURL() -> URL
+    {
+        if self.background_image == nil
+        {
+            return URL(string: "https://via.placeholder.com/500x500")!
+        }
+
+        let splits = self.background_image!.split(separator: "/");
+        let url1 = splits[splits.count - 1]
+        let url2 = splits[splits.count - 2]
+        let url3 = splits[splits.count - 3]
+        let backgroundUrl = "https://api.rawg.io/media/crop/600/400/\(url3)/\(url2)/\(url1)"
+        return URL(string: backgroundUrl)!
+    }
 }

@@ -88,4 +88,17 @@ class PlataformaInfoViewController: UIViewController
     {
         self.textDesc.textColor = traitCollection.userInterfaceStyle == .light ? .black : .white
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier != "seguePlataformaJuegos"
+        {
+            return
+        }
+        
+        if let plataformaInfoViewController = segue.destination as? JuegosPlataformaViewController
+        {
+            plataformaInfoViewController.plataformaId = self.plataformaId // Tengo que pasar la id porque la API no pasa toda la informacion de la plataforma
+        }
+    }
 }
