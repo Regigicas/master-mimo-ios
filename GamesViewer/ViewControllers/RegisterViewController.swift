@@ -20,6 +20,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.title = "Registrarse"
         self.usernameField.delegate = self
         self.emailField.delegate = self
         self.passField.delegate = self
@@ -131,16 +132,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         }
         else
         {
-            var resultado: String = "¡Te has registrado correctamente!"
-            let returnError = UsuarioController.crearUsuario(nombre: usernameText, email: emailText, password: passText)
-            if let returnMsg = returnError
-            {
-                resultado = returnMsg
-            }
+            let returnEnum = UsuarioController.crearUsuario(nombre: usernameText, email: emailText, password: passText)
             
-            let alert = UIAlertController(title: resultado, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: returnEnum.stringValue, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                if resultado == "¡Te has registrado correctamente!"
+                if returnEnum == .ok
                 {
                     self.navigationController?.popViewController(animated: true)
                 }

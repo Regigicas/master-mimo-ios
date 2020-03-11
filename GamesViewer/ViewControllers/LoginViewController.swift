@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
@@ -19,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.title = "Iniciar sesión"
         
         self.usernameField.delegate = self
         self.passField.delegate = self
@@ -31,15 +31,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     func tryAutoLogin()
     {
-        let storedUser = KeychainWrapper.standard.string(forKey: "loginUsername")
-        let storedPassword = KeychainWrapper.standard.string(forKey: "loginPassword")
-        if let username = storedUser, let password = storedPassword
+        if UsuarioController.tryUserAutoLogin() == .ok
         {
-            let (msgError, _) = UsuarioController.tryUserLogin(nombre: username, password: password)
-            if msgError == nil
-            {
-                self.performSegue(withIdentifier: "segueHome", sender: nil)
-            }
+            self.performSegue(withIdentifier: "segueHome", sender: nil)
         }
     }
     
@@ -77,6 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func loginClick(_ sender: UIButton)
     {
+        self.view.endEditing(true)
         self.tryLogin()
     }
     
@@ -84,19 +79,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     {
         let usernameText = self.usernameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let passText = self.passField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let (msgErrorOpt, usuarioOpt) = UsuarioController.tryUserLogin(nombre: usernameText, password: passText)
-        if let msgError = msgErrorOpt
+        let (enumResult, usuario) = UsuarioController.tryUserLogin(nombre: usernameText, password: passText)
+        if enumResult != .ok
         {
-            let alert = UIAlertController(title: msgError, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: enumResult.stringValue, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
         else
         {
-            let usuarioModel: UsuarioModel = UsuarioModel(userDataOpt: usuarioOpt)
-            KeychainWrapper.standard.set(usernameText, forKey: "loginUsername")
-            KeychainWrapper.standard.set(passText, forKey: "loginPassword")
+            let usuarioModel: UsuarioModel = UsuarioModel(userData: usuario!)
+            UsuarioController.saveLoginData(username: usernameText, pass: passText)
             UsuarioController.storeUserDataInCache(usuario: usuarioModel)
+            self.usernameField.text = ""
+            self.passField.text = ""
             self.performSegue(withIdentifier: "segueHome", sender: nil)
         }
     }

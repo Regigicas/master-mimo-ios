@@ -53,6 +53,8 @@ class PlataformaInfoViewController: UIViewController
     {
         if let plataformaData = self.plataformaInfo
         {
+            self.title = "Plataforma \(plataformaData.name!)"
+            
             if let imgBackground = plataformaData.image_background
             {
                 self.imageBackground.loadFromURL(url: URL(string: imgBackground)!)

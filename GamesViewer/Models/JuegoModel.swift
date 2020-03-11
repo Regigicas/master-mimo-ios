@@ -12,6 +12,7 @@ class JuegoModel : Codable
 {
     var id: Int?
     var name: String?
+    var description: String?
     var released: String?
     var background_image: String?
     var background_image_additional: String?
@@ -45,9 +46,14 @@ class JuegoModel : Codable
     
     func getBackgroundURL() -> URL
     {
+        return URL(string: self.getBackgroundString())!
+    }
+    
+    func getBackgroundString() -> String
+    {
         if self.background_image == nil
         {
-            return URL(string: "https://via.placeholder.com/500x500")!
+            return "https://via.placeholder.com/500x500"
         }
 
         let splits = self.background_image!.split(separator: "/");
@@ -55,6 +61,29 @@ class JuegoModel : Codable
         let url2 = splits[splits.count - 2]
         let url3 = splits[splits.count - 3]
         let backgroundUrl = "https://api.rawg.io/media/crop/600/400/\(url3)/\(url2)/\(url1)"
-        return URL(string: backgroundUrl)!
+        return backgroundUrl
+    }
+    
+    func getPlatformString() -> String
+    {
+        var platforms: String = "Ninguna"
+        
+        var first: Bool = true
+        if let plataformasList = self.plataformas
+        {
+            for plat in plataformasList {
+                if first
+                {
+                    first = false
+                    platforms = plat.name!
+                }
+                else
+                {
+                    platforms += " | \(plat.name!)"
+                }
+            }
+        }
+        
+        return platforms
     }
 }

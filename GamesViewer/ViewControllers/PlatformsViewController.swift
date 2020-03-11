@@ -15,6 +15,7 @@ class PlatformsViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.title = "Plataformas"
         PlataformaController.getListadoPlataformas(callback: { (plataformas) in
             self.plataformas = plataformas
             self.tableView.reloadData()

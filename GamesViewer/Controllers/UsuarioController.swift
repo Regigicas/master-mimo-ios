@@ -12,25 +12,25 @@ import SwiftKeychainWrapper
 
 struct UsuarioController
 {
-    public static func crearUsuario(nombre: String, email: String, password: String) -> (String?)
+    public static func crearUsuario(nombre: String, email: String, password: String) -> UsuarioControllerEnum
     {
         if exiteUsuario(nombre: nombre.uppercased())
         {
-            return "¡Ya existe una cuenta con el nombre de usuario indicado!"
+            return .existingUser
         }
         
         if exiteEmail(nombre: email.uppercased())
         {
-            return "¡Ya existe una cuenta con el correo electrónico indicado!"
+            return .existingEmail
         }
         
-        let (contextOptional, nuevoUsuarioOptional) = Util.buildInsertRequest(nombreClase: "Usuario")
-        if let context = contextOptional, let nuevoUsuario = nuevoUsuarioOptional
+        if let context = Util.getAppContext()
         {
-            nuevoUsuario.setValue(nombre, forKey: "usuario")
-            nuevoUsuario.setValue(email, forKey: "email")
-            nuevoUsuario.setValue(0, forKey: "preferencias")
-            nuevoUsuario.setValue(Util.sha256(str: "\(nombre.uppercased()):\(password)"), forKey: "sha_hash_pass")
+            let nuevoUsuario: UsuarioDB = UsuarioDB.init(context: context)
+            nuevoUsuario.usuario = nombre
+            nuevoUsuario.email = email
+            nuevoUsuario.preferencias = 0
+            nuevoUsuario.sha_hash_pass = Util.sha256(str: "\(nombre.uppercased()):\(password)")
             
             do
             {
@@ -39,29 +39,53 @@ struct UsuarioController
             catch let error as NSError
             {
                 print(error)
-                return "Se ha producido un error interno"
+                return .internalError
             }
             
-            return nil
+            return .ok
         }
         
-        return "Se ha producido un error interno";
+        return .internalError
     }
     
-    public static func tryUserLogin(nombre: String, password: String) -> (String?, NSManagedObject?)
+    public static func tryUserAutoLogin() -> (UsuarioControllerEnum)
+    {
+        let storedUser = KeychainWrapper.standard.string(forKey: "loginUsername")
+        let storedPassword = KeychainWrapper.standard.string(forKey: "loginPassword")
+        if let username = storedUser, let password = storedPassword
+        {
+            let (returnResult, _) = tryUserLogin(nombre: username, password: password)
+            return returnResult
+        }
+        
+        return .usernameNotFound
+    }
+    
+    public static func tryUserLogin(nombre: String, password: String) -> (UsuarioControllerEnum, UsuarioDB?)
     {
         if let usuario = doSingleSelectQuery(param: "usuario", paramValue: nombre.uppercased())
         {
             let passHash = Util.sha256(str: "\(nombre.uppercased()):\(password)")
-            if passHash != (usuario.value(forKey: "sha_hash_pass") as! String)
+            if passHash != usuario.sha_hash_pass
             {
-                return ("¡La contraseña no coincide!", nil)
+                return (.passwordMismatch, nil)
             }
             
-            return (nil, usuario)
+            return (.ok, usuario)
         }
         
-        return ("¡No existe ningun usuario con ese nombre!", nil)
+        return (.usernameNotFound, nil)
+    }
+    
+    public static func saveLoginData(username: String, pass: String)
+    {
+        KeychainWrapper.standard.set(username, forKey: "loginUsername")
+        KeychainWrapper.standard.set(pass, forKey: "loginPassword")
+    }
+    
+    public static func logoutUser()
+    {
+        KeychainWrapper.standard.removeAllKeys()
     }
     
     public static func storeUserDataInCache(usuario: UsuarioModel)
@@ -94,43 +118,134 @@ struct UsuarioController
         return nil
     }
     
-    public static func updateEmailUsuario(viejoEmail: String, nuevoEmail: String) -> String?
+    public static func usuarioActualTieneFavorito(juegoId: Int) -> Bool
+    {
+        if let usuario = retrieveUsuarioFromCache()
+        {
+            if usuario.tieneFavorito(juegoId: juegoId)
+            {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    public static func usuarioActualSetFavorito(juego: JuegoModel) -> Bool
+    {
+        if let usuario = retrieveUsuarioFromCache()
+        {
+            if usuario.tieneFavorito(juegoId: juego.id!)
+            {
+                return false
+            }
+            
+            if let usuarioDB = doSingleSelectQuery(param: "usuario", paramValue: usuario.username!)
+            {
+                var juegoFavDBOpt = JuegoController.getJuegoFavDB(juegoId: juego.id!)
+                if juegoFavDBOpt == nil // Si no existe lo registramos para usos posteriores
+                {
+                    juegoFavDBOpt = JuegoController.registrarJuegoFavDB(juego: juego)
+                }
+
+                if let juegoFavDB = juegoFavDBOpt
+                {
+                    if let context = Util.getAppContext()
+                    {
+                        usuarioDB.addToFavoritos(juegoFavDB)
+                        do
+                        {
+                            try context.save()
+                        }
+                        catch let error as NSError
+                        {
+                            print(error)
+                            return false
+                        }
+                        
+                        usuario.favoritos?.append(JuegoFavModel(juego: juego))
+                        storeUserDataInCache(usuario: usuario)
+                        return true
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    public static func usuarioActualEliminarFavorito(juego: JuegoModel) -> Bool
+    {
+        if let usuario = retrieveUsuarioFromCache()
+        {
+            if !usuario.tieneFavorito(juegoId: juego.id!)
+            {
+                return false
+            }
+            
+            if let usuarioDB = doSingleSelectQuery(param: "usuario", paramValue: usuario.username!)
+            {
+                if let juegoFavDB = JuegoController.getJuegoFavDB(juegoId: juego.id!)
+                {
+                    if let context = Util.getAppContext()
+                    {
+                        usuarioDB.removeFromFavoritos(juegoFavDB)
+                        do
+                        {
+                            try context.save()
+                        }
+                        catch let error as NSError
+                        {
+                            print(error)
+                            return false
+                        }
+                        
+                        let nuevoFavoritos = usuario.favoritos!.filter({ (i) -> Bool in
+                            i.id != juego.id
+                        })
+                        usuario.favoritos = nuevoFavoritos
+                        storeUserDataInCache(usuario: usuario)
+                        return true
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    public static func updateEmailUsuario(viejoEmail: String, nuevoEmail: String) -> UsuarioControllerEnum
     {
         if exiteEmail(nombre: nuevoEmail)
         {
-            return "¡Ya existe una cuenta con el correo electrónido indicado!"
+            return .existingEmail
         }
         
-        let (contextOptional, fetchRequestOptional) = Util.buildFetchRequest(nombreClase: "Usuario")
-        if let context = contextOptional, let fetchRequest = fetchRequestOptional
+        if let context = Util.getAppContext()
         {
+            let fetchRequest: NSFetchRequest<UsuarioDB> = UsuarioDB.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "email LIKE[c] %@", viejoEmail)
             do
             {
                 let fetchData = try context.fetch(fetchRequest)
                 if fetchData.count == 0
                 {
-                    return "Se ha producido un error interno"
+                    return .internalError
                 }
                 
-                let result = fetchData[0] as? NSManagedObject
-                if result != nil
-                {
-                    result?.setValue(nuevoEmail, forKey: "email")
-                    try context.save()
-                    return nil
-                }
-                
-                return "Se ha producido un error interno"
+                let result = fetchData[0]
+                result.email = nuevoEmail
+                try context.save()
+                return .emailUpdateOk
             }
             catch let error as NSError
             {
                 print(error)
-                return "Se ha producido un error interno"
+                return .internalError
             }
         }
         
-        return "Se ha producido un error interno"
+        return .internalError
     }
     
     public static func exiteUsuario(nombre: String) -> Bool
@@ -143,11 +258,11 @@ struct UsuarioController
         return doSingleSelectQuery(param: "email", paramValue: nombre) != nil
     }
     
-    private static func doSingleSelectQuery(param: String, paramValue: String) -> NSManagedObject?
+    private static func doSingleSelectQuery(param: String, paramValue: String) -> UsuarioDB?
     {
-        let (contextOptional, fetchRequestOptional) = Util.buildFetchRequest(nombreClase: "Usuario")
-        if let context = contextOptional, let fetchRequest = fetchRequestOptional
+        if let context = Util.getAppContext()
         {
+            let fetchRequest: NSFetchRequest<UsuarioDB> = UsuarioDB.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "\(param) LIKE[c] %@", paramValue)
             do
             {
@@ -157,13 +272,7 @@ struct UsuarioController
                     return nil
                 }
                 
-                let result = fetchData[0] as? NSManagedObject
-                if result != nil
-                {
-                    return result
-                }
-                
-                return nil
+                return fetchData[0]
             }
             catch let error as NSError
             {

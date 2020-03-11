@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 
 class ConfigViewController: UIViewController
 {
@@ -18,7 +17,7 @@ class ConfigViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.title = "Configuración"
         self.usuarioData = UsuarioController.retrieveUsuarioFromCache()
         assert(self.usuarioData != nil)
         self.updateDisplay()
@@ -52,7 +51,16 @@ class ConfigViewController: UIViewController
     
     @IBAction func logoutClick(_ sender: UIButton)
     {
-        KeychainWrapper.standard.removeAllKeys()
-        self.navigationController?.popToRootViewController(animated: true)
+        let refreshAlert = UIAlertController(title: "¿Estás seguro que de quieres cerrar sesión?", message: nil, preferredStyle: .alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Sí", style: .default, handler: { (action: UIAlertAction!) in
+            UsuarioController.logoutUser()
+            self.navigationController?.popToRootViewController(animated: true)
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
+        }))
+
+        self.present(refreshAlert, animated: true, completion: nil)
     }
 }

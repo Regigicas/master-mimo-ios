@@ -36,19 +36,11 @@ struct Util
         return ""
     }
     
-    public static func buildFetchRequest(nombreClase: String) -> (NSManagedObjectContext?, NSFetchRequest<NSFetchRequestResult>?)
+    public static func getAppContext() -> NSManagedObjectContext?
     {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
         let context = appDelegate.persistentContainer.viewContext
-        return (context, NSFetchRequest<NSFetchRequestResult>(entityName: nombreClase))
-    }
-    
-    public static func buildInsertRequest(nombreClase: String) -> (NSManagedObjectContext?, NSManagedObject?)
-    {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return (nil, nil) }
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: nombreClase, in: context)
-        return (context, NSManagedObject(entity: entity!, insertInto: context))
+        return context
     }
     
     public static func validateEmail(email: String) -> Bool

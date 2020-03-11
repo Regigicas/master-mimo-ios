@@ -18,7 +18,7 @@ class EditDataViewController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+        self.title = "Editar Email"
         assert(self.usuarioData != nil && self.configView != nil)
         self.emailField.text = self.usuarioData?.email
         self.emailField.delegate = self
@@ -91,6 +91,7 @@ class EditDataViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func clickEditData(_ sender: UIButton)
     {
+        self.view.endEditing(true)
         self.updateEmail()
     }
     
@@ -98,22 +99,16 @@ class EditDataViewController: UIViewController, UITextFieldDelegate
     {
         if !Util.validateEmail(email: emailField.text!)
         {
-            let alert = UIAlertController(title: "¡El nuevo correco electrónico no tiene un formato valido!", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: UsuarioControllerEnum.emailPatternError.stringValue, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
             return;
         }
         
-        var resultado: String = "¡El correo electrónico se ha actualizado!"
-        let returnMsgOpt = UsuarioController.updateEmailUsuario(viejoEmail: usuarioData!.email!, nuevoEmail: emailField.text!)
-        if let returnMsg = returnMsgOpt
-        {
-            resultado = returnMsg
-        }
-        
-        let alert = UIAlertController(title: resultado, message: nil, preferredStyle: .alert)
+        let returnEnum = UsuarioController.updateEmailUsuario(viejoEmail: usuarioData!.email!, nuevoEmail: emailField.text!)
+        let alert = UIAlertController(title: returnEnum.stringValue, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            if resultado == "¡El correo electrónico se ha actualizado!"
+            if returnEnum == .emailUpdateOk
             {
                 self.usuarioData?.email = self.emailField.text!
                 self.configView?.updateDataUsuario(data: self.usuarioData!)
