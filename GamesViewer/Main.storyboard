@@ -466,7 +466,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-aB-dPL">
-                                <rect key="frame" x="82" y="146" width="156" height="30"/>
+                                <rect key="frame" x="82" y="244" width="156" height="30"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Cerrar sesión">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -481,7 +481,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msT-d0-yzh">
-                                <rect key="frame" x="82" y="108" width="156" height="30"/>
+                                <rect key="frame" x="82" y="206" width="156" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Cambiar Email">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -496,6 +496,18 @@
                                     <segue destination="YuV-S3-Xgq" kind="show" identifier="segueEditEmail" id="TtL-ox-kGc"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eaH-6o-GDh">
+                                <rect key="frame" x="261" y="120" width="51" height="31"/>
+                                <connections>
+                                    <action selector="preferenciasChange:" destination="uu4-S2-Wgw" eventType="valueChanged" id="Ijw-5T-Rtk"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificar cuando va a salir algun juego que tengo en favoritos" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwg-ub-u8V">
+                                <rect key="frame" x="20" y="105" width="233" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -503,13 +515,18 @@
                             <constraint firstItem="txV-W3-edy" firstAttribute="trailing" secondItem="msT-d0-yzh" secondAttribute="trailing" constant="82" id="3NO-v3-Ic5"/>
                             <constraint firstItem="VVJ-UY-Rlw" firstAttribute="leading" secondItem="WnL-1W-ovN" secondAttribute="trailing" constant="14" id="Cio-dH-cEZ"/>
                             <constraint firstItem="9B1-Sw-Shg" firstAttribute="top" secondItem="VVJ-UY-Rlw" secondAttribute="bottom" constant="8" id="Etl-l5-I59"/>
+                            <constraint firstItem="txV-W3-edy" firstAttribute="trailing" secondItem="eaH-6o-GDh" secondAttribute="trailing" constant="10" id="Flj-Fv-RJB"/>
+                            <constraint firstItem="msT-d0-yzh" firstAttribute="top" secondItem="iwg-ub-u8V" secondAttribute="bottom" constant="40" id="Hg3-cN-nqK"/>
                             <constraint firstItem="txV-W3-edy" firstAttribute="trailing" secondItem="eTP-aB-dPL" secondAttribute="trailing" constant="82" id="HhN-MQ-oTH"/>
                             <constraint firstItem="VVJ-UY-Rlw" firstAttribute="top" secondItem="txV-W3-edy" secondAttribute="top" constant="20" id="O3m-jd-bpw"/>
+                            <constraint firstItem="iwg-ub-u8V" firstAttribute="leading" secondItem="txV-W3-edy" secondAttribute="leading" constant="20" id="OrK-nV-2OM"/>
                             <constraint firstItem="WnL-1W-ovN" firstAttribute="top" secondItem="txV-W3-edy" secondAttribute="top" constant="20" id="biR-JH-c7P"/>
+                            <constraint firstItem="eaH-6o-GDh" firstAttribute="centerY" secondItem="iwg-ub-u8V" secondAttribute="centerY" id="e76-kX-lYf"/>
                             <constraint firstItem="WRo-KZ-k6H" firstAttribute="leading" secondItem="txV-W3-edy" secondAttribute="leading" constant="16" id="epg-Z3-KpY"/>
                             <constraint firstItem="eTP-aB-dPL" firstAttribute="top" secondItem="msT-d0-yzh" secondAttribute="bottom" constant="8" id="fgy-uO-75Y"/>
+                            <constraint firstItem="iwg-ub-u8V" firstAttribute="top" secondItem="WRo-KZ-k6H" secondAttribute="bottom" constant="35" id="fk0-Uk-xwH"/>
+                            <constraint firstItem="iwg-ub-u8V" firstAttribute="width" secondItem="AJZ-Ki-9DX" secondAttribute="width" multiplier="0.728125" id="le9-zH-NLd"/>
                             <constraint firstItem="eTP-aB-dPL" firstAttribute="leading" secondItem="txV-W3-edy" secondAttribute="leading" constant="82" id="s7E-AK-qfC"/>
-                            <constraint firstItem="msT-d0-yzh" firstAttribute="top" secondItem="9B1-Sw-Shg" secondAttribute="bottom" constant="38" id="xdY-JJ-C4z"/>
                             <constraint firstItem="WRo-KZ-k6H" firstAttribute="top" secondItem="WnL-1W-ovN" secondAttribute="bottom" constant="8" id="yNv-vS-SZv"/>
                             <constraint firstItem="9B1-Sw-Shg" firstAttribute="leading" secondItem="WRo-KZ-k6H" secondAttribute="trailing" constant="32" id="zlL-rd-D2Y"/>
                             <constraint firstItem="msT-d0-yzh" firstAttribute="leading" secondItem="txV-W3-edy" secondAttribute="leading" constant="82" id="zte-aC-XDx"/>
@@ -520,16 +537,17 @@
                     <connections>
                         <outlet property="labelEmail" destination="9B1-Sw-Shg" id="BVx-ex-JYD"/>
                         <outlet property="labelUsuario" destination="VVJ-UY-Rlw" id="gDo-r2-5Bw"/>
+                        <outlet property="switchPrefs" destination="eaH-6o-GDh" id="FlF-0W-8sM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU6-RH-Wq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1238" y="1505"/>
+            <point key="canvasLocation" x="1237.5" y="1505"/>
         </scene>
         <!--Juego Info View Controller-->
         <scene sceneID="1Db-mM-dDz">
             <objects>
-                <viewController id="pWX-rz-Yo6" customClass="JuegoInfoViewController" customModule="GamesViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JuegoInfoViewController" id="pWX-rz-Yo6" customClass="JuegoInfoViewController" customModule="GamesViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A4x-EX-QUa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -897,6 +915,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickScanQR:" destination="NXj-HA-O8I" eventType="touchUpInside" id="ek6-Qm-7TH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ordenar por:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28A-co-EmN">
                                 <rect key="frame" x="16" y="11" width="98" height="21"/>
@@ -910,28 +931,41 @@
                                 <state key="normal" title="Orden">
                                     <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickOrderPicker:" destination="NXj-HA-O8I" eventType="touchUpInside" id="Edg-nO-OSW"/>
+                                </connections>
                             </button>
+                            <pickerView hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-9F-XWM">
+                                <rect key="frame" x="0.0" y="266" width="320" height="216"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ea1-9F-XWM" firstAttribute="leading" secondItem="77G-XP-krr" secondAttribute="leading" id="3A6-uF-idN"/>
                             <constraint firstItem="77G-XP-krr" firstAttribute="trailing" secondItem="Wod-HO-xBC" secondAttribute="trailing" id="3p9-cz-8Uw"/>
                             <constraint firstItem="77G-XP-krr" firstAttribute="trailing" secondItem="FgH-ha-cbN" secondAttribute="trailing" constant="16" id="54Q-8T-Qcz"/>
                             <constraint firstItem="28A-co-EmN" firstAttribute="top" secondItem="77G-XP-krr" secondAttribute="top" constant="11" id="6eR-Ab-KDy"/>
                             <constraint firstItem="77G-XP-krr" firstAttribute="trailing" secondItem="huh-i2-1J4" secondAttribute="trailing" constant="16" id="DgK-Ij-zf3"/>
                             <constraint firstItem="FgH-ha-cbN" firstAttribute="top" secondItem="77G-XP-krr" secondAttribute="top" constant="6" id="F3g-1p-fPz"/>
+                            <constraint firstItem="ea1-9F-XWM" firstAttribute="bottom" secondItem="77G-XP-krr" secondAttribute="bottom" constant="51" id="GQD-nI-BA9"/>
                             <constraint firstItem="28A-co-EmN" firstAttribute="leading" secondItem="77G-XP-krr" secondAttribute="leading" constant="16" id="OcL-Qb-xNY"/>
                             <constraint firstItem="huh-i2-1J4" firstAttribute="top" secondItem="Wod-HO-xBC" secondAttribute="bottom" constant="8" id="Sx4-Js-eJz"/>
+                            <constraint firstItem="ea1-9F-XWM" firstAttribute="top" secondItem="77G-XP-krr" secondAttribute="top" constant="266" id="ZnB-Zl-llt"/>
                             <constraint firstItem="77G-XP-krr" firstAttribute="bottom" secondItem="huh-i2-1J4" secondAttribute="bottom" constant="8" id="bB6-Kv-QWj"/>
                             <constraint firstItem="Wod-HO-xBC" firstAttribute="top" secondItem="28A-co-EmN" secondAttribute="bottom" constant="14" id="cO5-tk-csN"/>
                             <constraint firstItem="FgH-ha-cbN" firstAttribute="leading" secondItem="28A-co-EmN" secondAttribute="trailing" constant="5" id="crN-ZK-TBu"/>
                             <constraint firstItem="huh-i2-1J4" firstAttribute="leading" secondItem="77G-XP-krr" secondAttribute="leading" constant="16" id="dX5-pB-u4w"/>
+                            <constraint firstItem="77G-XP-krr" firstAttribute="trailing" secondItem="ea1-9F-XWM" secondAttribute="trailing" id="gnC-av-8c1"/>
                             <constraint firstItem="Wod-HO-xBC" firstAttribute="leading" secondItem="77G-XP-krr" secondAttribute="leading" id="mus-zC-TIN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="77G-XP-krr"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Inicio" image="house.fill" catalog="system" selectedImage="house.fill" id="yfK-fo-IH6"/>
                     <connections>
+                        <outlet property="buttonOrder" destination="FgH-ha-cbN" id="7gt-Xf-tDN"/>
                         <outlet property="collectionView" destination="Wod-HO-xBC" id="fh8-VZ-6Hb"/>
+                        <outlet property="pickerOrden" destination="ea1-9F-XWM" id="tTA-fS-mpG"/>
                         <segue destination="pWX-rz-Yo6" kind="show" identifier="segueClickJuegoHome" id="TgW-w6-KXh"/>
                     </connections>
                 </viewController>

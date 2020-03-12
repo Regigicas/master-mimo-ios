@@ -109,6 +109,7 @@ struct JuegoController
             nuevoJuego.id = Int32(juego.id!)
             nuevoJuego.nombre = juego.name
             nuevoJuego.backgroundImage = juego.getBackgroundString()
+            nuevoJuego.releaseDate = juego.released
             
             do
             {

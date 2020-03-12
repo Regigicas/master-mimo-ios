@@ -13,6 +13,7 @@ class ConfigViewController: UIViewController
     public var usuarioData: UsuarioModel?
     @IBOutlet weak var labelUsuario: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
+    @IBOutlet weak var switchPrefs: UISwitch!
     
     override func viewDidLoad()
     {
@@ -41,6 +42,7 @@ class ConfigViewController: UIViewController
     {
         self.labelUsuario.text = self.usuarioData?.username
         self.labelEmail.text = self.usuarioData?.email
+        self.switchPrefs.isOn = self.usuarioData?.settings == 1
     }
     
     func updateDataUsuario(data: UsuarioModel)
@@ -62,5 +64,13 @@ class ConfigViewController: UIViewController
         }))
 
         self.present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func preferenciasChange(_ sender: UISwitch)
+    {
+        let prefs: Int32 = sender.isOn ? 1 : 0
+        UsuarioController.updatePreferenciasUsuario(name: self.usuarioData!.username!, prefs: prefs)
+        self.usuarioData?.settings = prefs
+        NotificationController.updateNotificationStatus(on: prefs == 1 ? true : false)
     }
 }

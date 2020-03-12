@@ -248,6 +248,32 @@ struct UsuarioController
         return .internalError
     }
     
+    public static func updatePreferenciasUsuario(name: String, prefs: Int32)
+    {
+        if let usuario = retrieveUsuarioFromCache()
+        {
+            if let usuarioDB = doSingleSelectQuery(param: "usuario", paramValue: name)
+            {
+                if let context = Util.getAppContext()
+                {
+                    usuarioDB.preferencias = prefs
+                    do
+                    {
+                        try context.save()
+                    }
+                    catch let error as NSError
+                    {
+                        print(error)
+                        return
+                    }
+                    
+                    usuario.settings = prefs
+                    storeUserDataInCache(usuario: usuario)
+                }
+            }
+        }
+    }
+    
     public static func exiteUsuario(nombre: String) -> Bool
     {
         return doSingleSelectQuery(param: "usuario", paramValue: nombre) != nil

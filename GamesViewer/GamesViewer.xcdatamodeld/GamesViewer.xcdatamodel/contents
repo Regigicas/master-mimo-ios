@@ -4,6 +4,7 @@
         <attribute name="backgroundImage" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nombre" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="String"/>
         <relationship name="usuarios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UsuarioDB" inverseName="favoritos" inverseEntity="UsuarioDB"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -27,7 +28,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="JuegoFavDB" positionX="-768.13671875" positionY="328.12890625" width="128" height="103"/>
+        <element name="JuegoFavDB" positionX="-768.13671875" positionY="328.12890625" width="128" height="118"/>
         <element name="UsuarioDB" positionX="-186.15234375" positionY="221.765625" width="128" height="118"/>
     </elements>
 </model>

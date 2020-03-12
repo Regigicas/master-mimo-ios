@@ -56,3 +56,19 @@ extension UITableView
         return y > (h + reload_distance)
     }
 }
+
+extension UICollectionView
+{
+    func isAtEnd() -> Bool
+    {
+        let offset = self.contentOffset
+        let bounds = self.bounds
+        let size = self.contentSize
+        let inset = self.contentInset
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height
+        let reload_distance: CGFloat = 10.0
+        
+        return y > (h + reload_distance)
+    }
+}

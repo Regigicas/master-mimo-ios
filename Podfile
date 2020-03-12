@@ -8,4 +8,5 @@ target 'GamesViewer' do
   # Pods for GamesViewer
   pod 'Alamofire', '~> 5.0'
   pod 'SwiftKeychainWrapper', '~> 3.4'
+  pod 'QRCodeReader.swift', '~> 10.1'
 end

@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.0.2)
+  - QRCodeReader.swift (10.1.0)
   - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0)
+  - QRCodeReader.swift (~> 10.1)
   - SwiftKeychainWrapper (~> 3.4)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - QRCodeReader.swift
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  QRCodeReader.swift: 373a389fe9a22d513c879a32a6f647c58f4ef572
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: e0b084c63443cfc41c38b0b8bdb222406638d2f6
+PODFILE CHECKSUM: ed66464f390f15e385a39bee62653e28a2e9d5ac
 
 COCOAPODS: 1.9.0

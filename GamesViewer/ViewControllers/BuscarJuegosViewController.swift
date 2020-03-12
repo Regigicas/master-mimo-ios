@@ -128,7 +128,7 @@ class BuscarJuegosViewController: UITableViewController, UISearchBarDelegate
             self.minJuegosCargados = self.juegosPerIncrement
             self.currentPage = 1
             self.tablaCargando = true
-            JuegoController.getJuegosQuery(page: currentPage, query: textoBusqueda, callback: { (juegos) in
+            JuegoController.getJuegosQuery(page: self.currentPage, query: textoBusqueda, callback: { (juegos) in
                 self.juegos = juegos
                 self.currentPage += 1
                 self.tableView.reloadData()
