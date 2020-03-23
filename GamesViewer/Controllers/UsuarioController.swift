@@ -14,6 +14,11 @@ struct UsuarioController
 {
     public static func crearUsuario(nombre: String, email: String, password: String) -> UsuarioControllerEnum
     {
+        if password.count < 8
+        {
+            return .passwordLenghtError
+        }
+        
         if exiteUsuario(nombre: nombre.uppercased())
         {
             return .existingUser
@@ -22,11 +27,6 @@ struct UsuarioController
         if exiteEmail(nombre: email.uppercased())
         {
             return .existingEmail
-        }
-        
-        if password.count < 8
-        {
-            return .passwordLenghtError
         }
         
         if let context = Util.getAppContext()
