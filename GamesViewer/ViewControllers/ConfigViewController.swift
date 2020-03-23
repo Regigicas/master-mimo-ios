@@ -34,7 +34,20 @@ class ConfigViewController: UIViewController
         if let editUserDataViewController = segue.destination as? EditDataViewController
         {
             editUserDataViewController.usuarioData = usuarioData
-            editUserDataViewController.configView = self
+        }
+    }
+    
+    @IBAction func unwindToConfig(_ unwindSegue: UIStoryboardSegue)
+    {
+        if unwindSegue.identifier != "unwindSegueConfig"
+        {
+            return;
+        }
+        
+        if let editUserDataViewController = unwindSegue.source as? EditDataViewController
+        {
+            self.usuarioData = editUserDataViewController.usuarioData
+            self.updateDisplay()
         }
     }
     

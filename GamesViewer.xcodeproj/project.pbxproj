@@ -15,6 +15,7 @@
 		6F1120AD240D7DB3004FDA91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1120AC240D7DB3004FDA91 /* Assets.xcassets */; };
 		6F1120B0240D7DB3004FDA91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1120AE240D7DB3004FDA91 /* LaunchScreen.storyboard */; };
 		6F1120B9240D7E7D004FDA91 /* JuegoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1120B8240D7E7D004FDA91 /* JuegoController.swift */; };
+		6F13EE092428E86B00738D23 /* BotonRedondo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F13EE082428E86B00738D23 /* BotonRedondo.swift */; };
 		6F170E5224181B2C008DA9CB /* FavoritosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F170E5124181B2C008DA9CB /* FavoritosViewController.swift */; };
 		6F1F81B2241979B300CF669B /* InicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1F81B1241979B300CF669B /* InicioViewController.swift */; };
 		6F1F81B424197A9D00CF669B /* JuegoOrderEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1F81B324197A9D00CF669B /* JuegoOrderEnum.swift */; };
@@ -24,7 +25,6 @@
 		6F2CC03E241004760033B3B3 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CC03D241004760033B3B3 /* RegisterViewController.swift */; };
 		6F2CC0402410090D0033B3B3 /* UsuarioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CC03F2410090D0033B3B3 /* UsuarioController.swift */; };
 		6F2CC042241018880033B3B3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CC041241018880033B3B3 /* Util.swift */; };
-		6F2CC044241131810033B3B3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CC043241131810033B3B3 /* HomeViewController.swift */; };
 		6F2CC0462411388E0033B3B3 /* UsuarioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CC0452411388E0033B3B3 /* UsuarioModel.swift */; };
 		6F3C81DF240D855800EDD888 /* JuegoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3C81DE240D855800EDD888 /* JuegoModel.swift */; };
 		6F3C81E1240D86D200EDD888 /* PlataformaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3C81E0240D86D200EDD888 /* PlataformaModel.swift */; };
@@ -54,6 +54,7 @@
 		6F1120AF240D7DB3004FDA91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1120B1240D7DB3004FDA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F1120B8240D7E7D004FDA91 /* JuegoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoController.swift; sourceTree = "<group>"; };
+		6F13EE082428E86B00738D23 /* BotonRedondo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotonRedondo.swift; sourceTree = "<group>"; };
 		6F170E5124181B2C008DA9CB /* FavoritosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosViewController.swift; sourceTree = "<group>"; };
 		6F1F81B1241979B300CF669B /* InicioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioViewController.swift; sourceTree = "<group>"; };
 		6F1F81B324197A9D00CF669B /* JuegoOrderEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoOrderEnum.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		6F2CC03D241004760033B3B3 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		6F2CC03F2410090D0033B3B3 /* UsuarioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioController.swift; sourceTree = "<group>"; };
 		6F2CC041241018880033B3B3 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		6F2CC043241131810033B3B3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6F2CC0452411388E0033B3B3 /* UsuarioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioModel.swift; sourceTree = "<group>"; };
 		6F2CC04724115B6E0033B3B3 /* GamesViewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GamesViewer-Bridging-Header.h"; sourceTree = "<group>"; };
 		6F3C81DE240D855800EDD888 /* JuegoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuegoModel.swift; sourceTree = "<group>"; };
@@ -168,7 +168,6 @@
 			children = (
 				6F2CC03B240EE3400033B3B3 /* LoginViewController.swift */,
 				6F2CC03D241004760033B3B3 /* RegisterViewController.swift */,
-				6F2CC043241131810033B3B3 /* HomeViewController.swift */,
 				6FF853142411631E008947D1 /* ConfigViewController.swift */,
 				6F8F0E89241184C6007CE00D /* EditDataViewController.swift */,
 				6F8F0E8D241194F0007CE00D /* PlatformsViewController.swift */,
@@ -201,6 +200,7 @@
 			children = (
 				6F2CC041241018880033B3B3 /* Util.swift */,
 				6F8F0E942412CD76007CE00D /* Extensions.swift */,
+				6F13EE082428E86B00738D23 /* BotonRedondo.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -344,13 +344,13 @@
 				6F8F0E952412CD76007CE00D /* Extensions.swift in Sources */,
 				6F1120A1240D7DB2004FDA91 /* AppDelegate.swift in Sources */,
 				6F8F0E8A241184C6007CE00D /* EditDataViewController.swift in Sources */,
-				6F2CC044241131810033B3B3 /* HomeViewController.swift in Sources */,
 				6F7C3F7A24193E0600511283 /* QRModel.swift in Sources */,
 				6F170E5224181B2C008DA9CB /* FavoritosViewController.swift in Sources */,
 				6F1F81B424197A9D00CF669B /* JuegoOrderEnum.swift in Sources */,
 				6F0D7B0A241803470071A184 /* UsuarioControllerEnum.swift in Sources */,
 				6F2CC042241018880033B3B3 /* Util.swift in Sources */,
 				6F8F0E922412BFCA007CE00D /* PlataformaInfoViewController.swift in Sources */,
+				6F13EE092428E86B00738D23 /* BotonRedondo.swift in Sources */,
 				6F81567B241ABFCD0028DCE8 /* NotificacionController.swift in Sources */,
 				6F8F0E8C241191F7007CE00D /* PlataformaController.swift in Sources */,
 				6F8F0E9B24142502007CE00D /* JuegosPlataformaViewController.swift in Sources */,

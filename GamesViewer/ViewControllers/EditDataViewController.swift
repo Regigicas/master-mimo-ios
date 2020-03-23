@@ -11,7 +11,6 @@ import UIKit
 class EditDataViewController: UIViewController, UITextFieldDelegate
 {
     var usuarioData: UsuarioModel?
-    var configView: ConfigViewController?
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var guardarButton: UIButton!
     
@@ -19,7 +18,7 @@ class EditDataViewController: UIViewController, UITextFieldDelegate
     {
         super.viewDidLoad()
         self.title = "Editar Email"
-        assert(self.usuarioData != nil && self.configView != nil)
+        assert(self.usuarioData != nil)
         self.emailField.text = self.usuarioData?.email
         self.emailField.delegate = self
         self.emailField.addTarget(self, action: #selector(campoEditado),for: .editingChanged)
@@ -111,9 +110,8 @@ class EditDataViewController: UIViewController, UITextFieldDelegate
             if returnEnum == .emailUpdateOk
             {
                 self.usuarioData?.email = self.emailField.text!
-                self.configView?.updateDataUsuario(data: self.usuarioData!)
                 UsuarioController.storeUserDataInCache(usuario: self.usuarioData!)
-                self.navigationController?.popViewController(animated: true)
+                self.performSegue(withIdentifier: "unwindSegueConfig", sender: nil)
             }
         }))
         self.present(alert, animated: true)
