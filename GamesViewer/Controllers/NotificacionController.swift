@@ -28,7 +28,11 @@ struct NotificationController
                 {
                     if let releaseDate = fav.getReleaseDateAsDate()
                     {
-                        sendNotificacionFav(juego: fav, fecha: releaseDate)
+                        let nowDate = Calendar.current.dateComponents([ Calendar.Component.year, Calendar.Component.month, Calendar.Component.day ], from: Date())
+                        if releaseDate.year! > nowDate.year! && releaseDate.month! > nowDate.month! && releaseDate.day! > nowDate.day!
+                        {
+                            sendNotificacionFav(juego: fav, fecha: releaseDate)
+                        }
                     }
                 }
             }
