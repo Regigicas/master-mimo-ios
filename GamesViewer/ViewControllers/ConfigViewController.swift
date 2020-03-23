@@ -66,17 +66,17 @@ class ConfigViewController: UIViewController
     
     @IBAction func logoutClick(_ sender: UIButton)
     {
-        let refreshAlert = UIAlertController(title: "¿Estás seguro que de quieres cerrar sesión?", message: nil, preferredStyle: .alert)
+        let logoutAlert = UIAlertController(title: "¿Estás seguro que de quieres cerrar sesión?", message: nil, preferredStyle: .alert)
 
-        refreshAlert.addAction(UIAlertAction(title: "Sí", style: .default, handler: { (action: UIAlertAction!) in
+        logoutAlert.addAction(UIAlertAction(title: "Sí", style: .default, handler: { (action: UIAlertAction!) in
             UsuarioController.logoutUser()
             self.navigationController?.popToRootViewController(animated: true)
         }))
 
-        refreshAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
+        logoutAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action: UIAlertAction!) in
         }))
 
-        self.present(refreshAlert, animated: true, completion: nil)
+        self.present(logoutAlert, animated: true, completion: nil)
     }
     
     @IBAction func preferenciasChange(_ sender: UISwitch)

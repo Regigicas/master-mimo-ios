@@ -115,10 +115,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         {
             textoError = "¡El correo electrónico no tiene un formato valido!"
         }
-        else if passText.count < 8
-        {
-            textoError = "¡La contraseña tiene que tener al menos 8 caracteres!"
-        }
         else if passText != passRepeatText
         {
             textoError = "¡Los campos de contraseña no coinciden!"

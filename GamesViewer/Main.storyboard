@@ -483,7 +483,7 @@
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msT-d0-yzh" customClass="BotonRedondo" customModule="GamesViewer" customModuleProvider="target">
                                 <rect key="frame" x="82" y="206" width="156" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Cambiar Email">
+                                <state key="normal" title="Cambiar datos">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -992,8 +992,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="done" textContentType="email"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aL-10-pJi">
+                                <rect key="frame" x="16" y="112" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña antigua" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y84-aE-MBO">
+                                <rect key="frame" x="16" y="141" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nueva contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uwz-cV-qnV">
+                                <rect key="frame" x="16" y="183" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBJ-0h-aGu" customClass="BotonRedondo" customModule="GamesViewer" customModuleProvider="target">
-                                <rect key="frame" x="82" y="91" width="156" height="30"/>
+                                <rect key="frame" x="82" y="242" width="156" height="30"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Guardar cambios">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1012,11 +1028,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="w36-lv-V9H" secondAttribute="trailing" constant="16" id="0zE-nt-g6l"/>
-                            <constraint firstItem="aBJ-0h-aGu" firstAttribute="top" secondItem="FyY-0x-zDM" secondAttribute="bottom" constant="8" id="Bef-KX-ZUa"/>
                             <constraint firstItem="FyY-0x-zDM" firstAttribute="top" secondItem="w36-lv-V9H" secondAttribute="bottom" constant="8" id="DGc-8O-0kx"/>
+                            <constraint firstItem="0aL-10-pJi" firstAttribute="top" secondItem="FyY-0x-zDM" secondAttribute="bottom" constant="29" id="E0M-QW-Nkp"/>
+                            <constraint firstItem="y84-aE-MBO" firstAttribute="top" secondItem="0aL-10-pJi" secondAttribute="bottom" constant="8" id="MjZ-OQ-05R"/>
+                            <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="y84-aE-MBO" secondAttribute="trailing" constant="16" id="QQj-H9-MX4"/>
+                            <constraint firstItem="0aL-10-pJi" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="16" id="Qm4-MW-95j"/>
+                            <constraint firstItem="Uwz-cV-qnV" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="16" id="WdY-XM-4R8"/>
                             <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="aBJ-0h-aGu" secondAttribute="trailing" constant="82" id="Zw5-FJ-yek"/>
                             <constraint firstItem="FyY-0x-zDM" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="16" id="aJQ-8e-QrA"/>
+                            <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="0aL-10-pJi" secondAttribute="trailing" constant="16" id="jkd-N1-Hrf"/>
+                            <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="Uwz-cV-qnV" secondAttribute="trailing" constant="16" id="o87-Ln-R6z"/>
+                            <constraint firstItem="y84-aE-MBO" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="16" id="peq-jL-r1i"/>
+                            <constraint firstItem="aBJ-0h-aGu" firstAttribute="top" secondItem="Uwz-cV-qnV" secondAttribute="bottom" constant="25" id="q2Q-dT-4s3"/>
                             <constraint firstItem="w36-lv-V9H" firstAttribute="top" secondItem="Kq8-iO-xeQ" secondAttribute="top" constant="20" id="rd0-Dd-m4L"/>
+                            <constraint firstItem="Uwz-cV-qnV" firstAttribute="top" secondItem="y84-aE-MBO" secondAttribute="bottom" constant="8" id="rfi-uu-OKp"/>
                             <constraint firstItem="Kq8-iO-xeQ" firstAttribute="trailing" secondItem="FyY-0x-zDM" secondAttribute="trailing" constant="16" id="sGb-Al-akG"/>
                             <constraint firstItem="aBJ-0h-aGu" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="82" id="tne-wj-1Qq"/>
                             <constraint firstItem="w36-lv-V9H" firstAttribute="leading" secondItem="Kq8-iO-xeQ" secondAttribute="leading" constant="16" id="x7j-oH-T6f"/>
@@ -1027,13 +1052,15 @@
                     <connections>
                         <outlet property="emailField" destination="FyY-0x-zDM" id="lTc-th-e8Z"/>
                         <outlet property="guardarButton" destination="aBJ-0h-aGu" id="Tpf-vh-9Sj"/>
+                        <outlet property="labelNewPassword" destination="Uwz-cV-qnV" id="w0W-lh-a10"/>
+                        <outlet property="labelOldPassword" destination="y84-aE-MBO" id="SID-uO-pmW"/>
                         <segue destination="byx-MS-g98" kind="unwind" identifier="unwindSegueConfig" unwindAction="unwindToConfig:" id="ux4-6e-C2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AH5-zJ-igs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="byx-MS-g98" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2404" y="1505"/>
+            <point key="canvasLocation" x="2403.75" y="1505"/>
         </scene>
         <!--Buscar-->
         <scene sceneID="Sio-Jx-4NW">

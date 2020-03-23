@@ -24,6 +24,11 @@ struct UsuarioController
             return .existingEmail
         }
         
+        if password.count < 8
+        {
+            return .passwordLenghtError
+        }
+        
         if let context = Util.getAppContext()
         {
             let nuevoUsuario: UsuarioDB = UsuarioDB.init(context: context)
@@ -214,11 +219,28 @@ struct UsuarioController
         return false
     }
     
-    public static func updateEmailUsuario(viejoEmail: String, nuevoEmail: String) -> UsuarioControllerEnum
+    public static func updateDatosUsuario(viejoEmail: String, nuevoEmail: String, viejaPass: String, nuevaPass: String) -> UsuarioControllerEnum
     {
-        if exiteEmail(nombre: nuevoEmail)
+        var emailSaveOpt: String? = nil
+        var passSaveOpt: String? = nil
+        if !viejoEmail.isEmpty && !nuevoEmail.isEmpty && viejoEmail != nuevoEmail
         {
-            return .existingEmail
+            if exiteEmail(nombre: nuevoEmail)
+            {
+                return .existingEmail
+            }
+            
+            emailSaveOpt = nuevoEmail
+        }
+        
+        if !viejaPass.isEmpty && !nuevaPass.isEmpty && viejaPass != nuevaPass
+        {
+            if nuevaPass.count < 8
+            {
+                return .passwordLenghtError
+            }
+            
+            passSaveOpt = nuevaPass
         }
         
         if let context = Util.getAppContext()
@@ -232,11 +254,32 @@ struct UsuarioController
                 {
                     return .internalError
                 }
-                
+
                 let result = fetchData[0]
-                result.email = nuevoEmail
+                if let emailSave = emailSaveOpt
+                {
+                    result.email = emailSave
+                }
+                
+                if var passSave = passSaveOpt
+                {
+                    let oldPassSave = Util.sha256(str: "\(result.usuario!.uppercased()):\(viejaPass)")
+                    if oldPassSave != result.sha_hash_pass
+                    {
+                        return .userUpdateOldPassError
+                    }
+                    
+                    passSave = Util.sha256(str: "\(result.usuario!.uppercased()):\(passSave)")
+                    if passSave == result.sha_hash_pass
+                    {
+                        return .samePasswordError
+                    }
+                    
+                    result.sha_hash_pass = passSave
+                }
+                
                 try context.save()
-                return .emailUpdateOk
+                return .userUpdateOk
             }
             catch let error as NSError
             {
