@@ -16,10 +16,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_app" translatesAutoresizingMaskIntoConstraints="NO" id="AUF-nf-fSr">
-                                <rect key="frame" x="40" y="120" width="240" height="240"/>
+                                <rect key="frame" x="64" y="42" width="192" height="192"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AUF-nf-fSr" secondAttribute="height" multiplier="1:1" id="b6n-7p-ba6"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cargando..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ua-BV-HO0">
-                                <rect key="frame" x="109" y="368" width="102" height="24"/>
+                                <rect key="frame" x="109" y="242" width="102" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -27,13 +30,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="AUF-nf-fSr" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="1:2" id="XOe-l9-4NT"/>
-                            <constraint firstItem="AUF-nf-fSr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YLN-Bc-HGF"/>
-                            <constraint firstItem="1ua-BV-HO0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aZf-eN-meC"/>
-                            <constraint firstItem="AUF-nf-fSr" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="eB0-Pk-O0V"/>
-                            <constraint firstItem="AUF-nf-fSr" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.75" id="iIm-yb-2CV"/>
-                            <constraint firstItem="1ua-BV-HO0" firstAttribute="top" secondItem="AUF-nf-fSr" secondAttribute="bottom" constant="8" id="wUM-9D-Prl"/>
-                            <constraint firstItem="AUF-nf-fSr" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.5" id="zt4-9e-Dtc"/>
+                            <constraint firstItem="AUF-nf-fSr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TLj-aR-4s2"/>
+                            <constraint firstItem="AUF-nf-fSr" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.4" id="da0-5C-d4T"/>
+                            <constraint firstItem="AUF-nf-fSr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="42" id="jTC-lI-Rp0"/>
+                            <constraint firstItem="1ua-BV-HO0" firstAttribute="top" secondItem="AUF-nf-fSr" secondAttribute="bottom" constant="8" id="kkS-VG-Hkt"/>
+                            <constraint firstItem="1ua-BV-HO0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="knJ-xX-swg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

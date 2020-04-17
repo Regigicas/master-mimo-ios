@@ -32,6 +32,9 @@ class JuegosPlataformaViewController: UITableViewController
             self.juegos = juegos
             self.currentPage += 1
             self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.scrollViewDidScroll(self.tableView)
+            }
         })
     }
     
