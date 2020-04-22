@@ -237,6 +237,25 @@ class InicioViewController: UIViewController, UICollectionViewDelegate, UIPicker
         reader.stopScanning()
         reader.dismiss(animated: true, completion: nil)
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?)
+    {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard UIApplication.shared.applicationState != .background else
+        {
+            return
+        }
+
+        if self.traitCollection.userInterfaceStyle == .light
+        {
+            self.pickerOrden.backgroundColor = .white
+        }
+        else
+        {
+            self.pickerOrden.backgroundColor = .darkGray
+        }
+    }
 }
 
 class JuegoCollectionViewCell: UICollectionViewCell
