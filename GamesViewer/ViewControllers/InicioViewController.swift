@@ -60,6 +60,15 @@ class InicioViewController: UIViewController, UICollectionViewDelegate, UIPicker
             self.currentPage += 1
             self.collectionView.reloadData()
         })
+        
+        if self.traitCollection.userInterfaceStyle == .light
+        {
+            self.pickerOrden.backgroundColor = .white
+        }
+        else
+        {
+            self.pickerOrden.backgroundColor = .darkGray
+        }
     }
     
     @IBAction func clickOrderPicker(_ sender: UIButton)
